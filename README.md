@@ -85,4 +85,63 @@ history = model.fit(X_train, y_train,
                     epochs=epochs, 
                     batch_size=batch_size, 
                     validation_data=(X_val, y_val))
+# Define lists to store the parsed data
+image_filenames = []
+bounding_boxes = []
+labels = []
+
+# Read the contents of the "gt.txt" file
+file_path = '/content/drive/My Drive/IEEE ML DATASET/gt.txt'
+with open(file_path, 'r') as file:
+    # Read each line in the file
+    for line in file:
+        # Split the line by semicolons
+        parts = line.strip().split(';')
+        
+        # Extract the information
+        image_filename = parts[0]
+        x1, y1, x2, y2 = map(int, parts[1:5])
+        label = parts[5]
+        
+        # Append the extracted information to the lists
+        image_filenames.append(image_filename)
+        bounding_boxes.append((x1, y1, x2, y2))
+        labels.append(label)
+
+# Print the extracted data for verification
+for i in range(len(image_filenames)):
+    print("Image Filename:", image_filenames[i])
+    print("Bounding Box:", bounding_boxes[i])
+    print("Label:", labels[i])
+    print()
+# Define lists to store the parsed data
+image_filenames = []
+bounding_boxes = []
+labels = []
+
+# Read the contents of the "gt.txt" file
+file_path = '/content/drive/My Drive/IEEE ML DATASET/gt.txt'
+with open(file_path, 'r') as file:
+    # Read each line in the file
+    for line in file:
+        # Split the line by semicolons
+        parts = line.strip().split(';')
+        
+        # Extract the information
+        image_filename = parts[0]
+        x1, y1, x2, y2 = map(int, parts[1:5])
+        label = parts[5]
+        
+        # Append the extracted information to the lists
+        image_filenames.append(image_filename)
+        bounding_boxes.append((x1, y1, x2, y2))
+        labels.append(label)
+
+ 
+                    
+                    
+                    
+                    
+                    
+                    
 
