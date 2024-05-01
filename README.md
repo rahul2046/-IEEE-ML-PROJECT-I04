@@ -48,3 +48,27 @@ X_test, y_test = load_images_from_subfolder(test_directory)
 
 # Split the training dataset into training and validation sets
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=42)
+from tensorflow.keras.applications import MobileNetV2
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import GlobalAveragePooling2D, Dense
+
+# Load pre-trained MobileNetV2 model without the top classification layer
+base_model = MobileNetV2(weights='imagenet', include_top=False, input_shape=(32, 32, 3))
+
+# Freeze the base model's layers
+for layer in base_model.layers:
+    layer.trainable = False
+
+# Add custom classification layers on top of the base model
+model = Sequential([
+    base_model,
+    GlobalAveragePooling2D(),
+    Dense(128, activation='relu'),
+    Dense(3, activation='softmax')  # Adjust the number of classes here (3 in this case)
+])
+
+# Compile the model
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+# Print model summary
+model.summary()
