@@ -72,3 +72,13 @@ model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=
 
 # Print model summary
 model.summary()
+# Define number of epochs and batch size
+epochs = 300
+batch_size = 32
+
+# Train the model for 300 epochs
+history = model.fit(X_train, y_train, 
+                    epochs=epochs, 
+                    batch_size=batch_size, 
+                    validation_data=(X_val, y_val))
+
