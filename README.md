@@ -20,6 +20,17 @@ dataset_dir = "/content/german-traffic-sign-detection-benchmark-gtsdb"
 dataset_contents = os.listdir(dataset_dir)
 print("Contents of the dataset directory:")
 print(dataset_contents)
+import os
+import pandas as pd
+
+# Define the directory where the dataset is downloaded
+dataset_dir = "/content/german-traffic-sign-detection-benchmark-gtsdb"
+
+# Load the dataset with Pandas
+annotations_df = pd.read_csv(os.path.join(dataset_dir, 'gt.txt'), sep=';', header=None)
+
+# Display first few rows of the DataFrame
+print(annotations_df.head())
 
 
 
